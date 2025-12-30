@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Submissions</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Submissions</h1>
+    <p class="muted">This admin view is protected by HTTP Basic Auth. Use the ADMIN_USER and ADMIN_PASS environment variables to set credentials.</p>
+
+    <div id="content">
+      <p>Loading submissions...</p>
+    </div>
+  </div>
+
+  <script>
+    async function load(){
+      try{
+        const res = await fetch('/api/admin/submissions');
+        if(!res.ok){
+          document.getElementById('content').innerText = 'Error loading submissions: ' + res.status;
+          return;
+        }
+        const body = await res.json();
+        const subs = body.submissions || [];
+        if(subs.length === 0){
+          document.getElementById('content').innerHTML = '<p>No submissions yet.</p>';
+          return;
+        }
+        const table = document.createElement('table');
+        table.style.width = '100%';
+        table.style.borderCollapse = 'collapse';
+        const thead = document.createElement('thead');
+        thead.innerHTML = '<tr><th style="text-align:left;padding:0.5rem;border-bottom:1px solid #eef2f6">Date</th><th style="text-align:left;padding:0.5rem;border-bottom:1px solid #eef2f6">Name</th><th style="text-align:left;padding:0.5rem;border-bottom:1px solid #eef2f6">Email</th><th style="text-align:left;padding:0.5rem;border-bottom:1px solid #eef2f6">Message</th></tr>';
+        table.appendChild(thead);
+        const tbody = document.createElement('tbody');
+        subs.slice().reverse().forEach(s => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td style="padding:0.5rem;border-bottom:1px solid #f2f6fb">${new Date(s.createdAt).toLocaleString()}</td><td style="padding:0.5rem;border-bottom:1px solid #f2f6fb">${escapeHtml(s.name)}</td><td style="padding:0.5rem;border-bottom:1px solid #f2f6fb">${escapeHtml(s.email)}</td><td style="padding:0.5rem;border-bottom:1px solid #f2f6fb">${escapeHtml(s.message)}</td>`;
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        const container = document.getElementById('content');
+        container.innerHTML = '';
+        container.appendChild(table);
+      }catch(err){
+        document.getElementById('content').innerText = 'Network or server error.';
+      }
+    }
+    function escapeHtml(str){
+      if(!str) return '';
+      return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m]; });
+    }
+    load();
+  </script>
+</body>
+</html>

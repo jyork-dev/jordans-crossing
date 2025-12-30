@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jordan's Crossing — Helping women start new lives</title>
+  <meta name="description" content="Jordan's Crossing helps women leave abusive relationships and rebuild their lives — programs, support, and safe transitions." />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">
+        <img src="assets/logo.svg" alt="Jordan's Crossing logo" width="48" height="48">
+        <span class="brand">Jordan's Crossing</span>
+      </a>
+
+      <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Open navigation</span>
+        ☰
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#get-help">Get Help</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
+          <li><a href="#donate" class="cta">Donate</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="container">
+        <h1 id="hero-heading">A safe path forward.</h1>
+        <p class="lead">Jordan's Crossing supports women escaping abuse with housing, mentoring, job resources, and community so they can start new lives with safety and dignity.</p>
+        <p class="hero-ctas">
+          <a href="#get-help" class="btn primary">Get help</a>
+          <a href="#volunteer" class="btn outline">Volunteer</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section container" id="about">
+      <h2>About us</h2>
+      <p>Jordan's Crossing is a non-profit dedicated to helping women safely leave abusive relationships and rebuild their lives through immediate support, transitional housing, counseling, and job-readiness programs. We focus on safety, dignity, and long-term stability.</p>
+    </section>
+
+    <section class="section container" id="programs">
+      <h2>Programs</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Emergency support</h3>
+          <p>Immediate safety planning and short-term housing placements for women and their children.</p>
+        </article>
+        <article class="card">
+          <h3>Transitional housing</h3>
+          <p>Longer-term housing with case management while clients secure independent living.</p>
+        </article>
+        <article class="card">
+          <h3>Employment & training</h3>
+          <p>Job-readiness workshops, resume support, and connections to employers.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="get-help">
+      <h2>Get help</h2>
+      <p>If you are in immediate danger, call your local emergency number now. For non-emergency help, contact us and we'll connect you to resources and a safety plan.</p>
+      <p><strong>Confidential contact:</strong></p>
+      <address>
+        <a href="mailto:help@jordanscrossing.org?subject=Requesting%20help">Email our confidential intake</a>
+      </address>
+    </section>
+
+    <section class="section container" id="volunteer">
+      <h2>Volunteer & support</h2>
+      <p>We welcome volunteers for mentoring, job coaching, and housing support. If you'd like to help, please reach out.</p>
+      <p><a href="mailto:volunteer@jordanscrossing.org?subject=Volunteer%20interest" class="btn">Contact us to volunteer</a></p>
+    </section>
+
+    <section class="section container" id="donate">
+      <h2>Donate</h2>
+      <p>Your support funds safe housing, counseling, and job training. Even small monthly donations make a difference.</p>
+      <p><a class="btn primary" href="#" onclick="openDonate(); return false;">Donate securely</a></p>
+      <p class="muted">(This demo uses a placeholder donate action; integrate your payment processor or Give API for live donations.)</p>
+    </section>
+
+    <section class="section container" id="contact">
+      <h2>Contact</h2>
+      <p>General inquiries, partnerships, or media: <a href="mailto:info@jordanscrossing.org">info@jordanscrossing.org</a></p>
+      <form id="contact-form" class="contact-form" name="contact" method="post" action="/" data-netlify="true" data-netlify-honeypot="bot-field">
+        <!-- Netlify form attributes: when deployed to Netlify this will capture submissions. -->
+        <input type="hidden" name="form-name" value="contact">
+        <!-- honeypot field for spam bots -->
+        <p class="sr-only">
+          <label>Don’t fill this out if you're human: <input name="bot-field"></label>
+        </p>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="btn primary">Send message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Jordan's Crossing. All rights reserved. Jordan's Crossing is a 501(c)(3) nonprofit organization (EIN: 00-0000000).</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

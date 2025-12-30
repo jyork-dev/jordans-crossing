@@ -91,14 +91,14 @@ body{
 .logo img{
   filter:drop-shadow(0 6px 14px rgba(42,157,143,0.12));
   /* larger header logo by default; keep natural aspect ratio */
-  height: 64px;
+  height: 96px; /* increased size */
   width: auto;
   display: block;
   border-radius: 8px;
 }
 @media (max-width:720px){
   /* slightly smaller on small screens */
-  .logo img{height:48px}
+  .logo img{height:64px}
 }
 .brand{color:var(--accent-2)}
 

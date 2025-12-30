@@ -1,21 +1,30 @@
 /* Basic clean, accessible styles for Jordan's Crossing */
 :root{
-  --bg:#ffffff;
-  --text:#0b1320;
-  --muted:#586375;
-  --accent:#0066cc;
-  --accent-2:#ff6b6b;
-  --card:#f7f9fb;
-  --radius:10px;
+  --bg:#fffaf5;
+  --text:#162029;
+  --muted:#6b7785;
+  --accent:#ff7a59; /* warm coral */
+  --accent-2:#f7b267; /* soft gold */
+  --card:#fffdfb;
+  --radius:14px;
   --max-width:1100px;
   --gap:1.25rem;
   font-size:16px;
+}
+
+/* Fix for in-page anchor links being hidden under the sticky header.
+   Sets a scroll margin so headings/sections are visible when navigated to. */
+:root { --header-offset: 72px; }
+html { scroll-behavior: smooth; }
+/* Apply offset to common anchor targets */
+h1[id], h2[id], h3[id], h4[id], .section[id], [id] {
+  scroll-margin-top: var(--header-offset);
 }
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
-  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color:var(--text);
   background:var(--bg);
   line-height:1.5;
@@ -27,22 +36,39 @@ body{
 .brand{font-weight:700}
 .nav-toggle{display:none;background:none;border:0;font-size:1.25rem}
 .site-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1rem;align-items:center}
-.site-nav a{text-decoration:none;color:var(--text);padding:0.35rem 0.5rem;border-radius:6px}
-.site-nav a.cta{background:var(--accent);color:#fff;padding:0.4rem 0.7rem}
+.site-nav a{text-decoration:none;color:var(--text);padding:0.35rem 0.5rem;border-radius:8px}
+.site-nav a.cta{background:var(--accent);color:#fff;padding:0.5rem 0.85rem;box-shadow:0 6px 18px rgba(255,122,89,0.12)}
 .hero{padding:3.25rem 0;background:linear-gradient(180deg,#f4f8ff 0%, #ffffff 60%)}
+.hero{padding:3.25rem 0;background:linear-gradient(180deg,#fff3ea 0%, #fffaf5 60%)}
 .hero .lead{color:var(--muted);max-width:60ch}
+
+.values{display:flex;flex-wrap:wrap;gap:0.5rem 1rem;padding-left:0;list-style:none}
+.values li{background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,250,245,0.6));padding:0.45rem 0.75rem;border-radius:8px;border:1px solid rgba(22,32,41,0.04);font-weight:600}
+.section h3{margin-top:1rem}
+
+.verse{
+  font-family: 'Poppins', Inter, system-ui, -apple-system;
+  color:var(--accent-2);
+  margin-top:0.75rem;
+  margin-bottom:1.25rem;
+  font-size:1rem;
+  opacity:0.95;
+}
 .hero-ctas .btn{margin-right:0.5rem}
 .section{padding:2rem 0}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.card{background:var(--card);padding:1rem;border-radius:var(--radius);box-shadow:0 1px 2px rgba(11,19,32,0.03)}
+.card{background:linear-gradient(180deg,#fff,#fffdfb);padding:1.25rem;border-radius:calc(var(--radius) + 2px);box-shadow:0 6px 18px rgba(22,32,41,0.05);border:1px solid rgba(22,32,41,0.03)}
 .btn{display:inline-block;text-decoration:none;padding:0.5rem 0.85rem;border-radius:8px;border:1px solid transparent;cursor:pointer}
-.btn.primary{background:var(--accent);color:#fff}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px rgba(247,178,103,0.12)}
 .btn.outline{background:transparent;border-color:var(--accent);color:var(--accent)}
 .muted{color:var(--muted);font-size:0.95rem}
 .contact-form{max-width:54ch;display:grid;gap:0.5rem}
 .contact-form input,.contact-form textarea{padding:0.6rem;border-radius:8px;border:1px solid #dfe8f2}
 .site-footer{border-top:1px solid #eef2f6;padding:1.25rem 0;margin-top:2rem;color:var(--muted);font-size:0.95rem}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.pray-block{background:linear-gradient(180deg, rgba(255,250,245,0.6), rgba(255,255,255,0.4));padding:1rem;border-radius:10px;margin-top:1rem;border:1px solid rgba(247,178,103,0.06)}
+.pray-block .small{font-size:0.9rem}
 
 /* Responsive */
 @media (max-width:900px){
@@ -56,3 +82,35 @@ body{
   .cards{grid-template-columns:1fr}
   .hero{padding:2rem 0}
 }
+
+/* Warm accents for small components */
+.logo img{filter:drop-shadow(0 6px 14px rgba(255,122,89,0.12));}
+.brand{color:var(--accent-2)}
+
+/* Donation form / mock checkout styles */
+.donation-hero, #donate-mock {padding-bottom:2rem}
+.card form, .card {max-width:760px;margin:0 auto}
+.card label{display:block;margin-top:0.75rem;font-weight:600}
+.card input[type="text"], .card input[type="email"], .card input[type="number"], .card input[type="tel"], .card textarea, .card select{width:100%;padding:0.65rem;border-radius:10px;border:1px solid #e6eef4;background:linear-gradient(180deg,#ffffff,#fffdfb)}
+.card .amounts{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem}
+.card .amounts label{background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,250,245,0.6));padding:0.5rem 0.75rem;border-radius:8px;border:1px solid rgba(22,32,41,0.04);cursor:pointer}
+.card .amounts input{margin-right:0.45rem}
+.card .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.card .muted.small{font-size:0.9rem}
+.card button.btn{margin-top:1rem}
+#donation-result{border-left:4px solid var(--accent);background:linear-gradient(180deg,#fffaf5,#fffdfb);padding:0.75rem}
+
+/* small screens: tighten form spacing */
+@media (max-width:720px){
+  .card .grid-2{grid-template-columns:1fr}
+  .card{padding:1rem}
+}
+
+/* Layout tweaks specifically for the donate page so the form aligns with other page content */
+#donate-mock .card{max-width:none;width:100%;margin:0;padding:1.25rem;border-radius:12px}
+#donate-mock .card form{width:100%;display:block}
+#donate-mock .card .amounts{width:100;display:flex;gap:0.5rem}
+#donate-mock .card .amounts label{flex:1;text-align:center}
+#donate-mock .card .amounts input{margin-right:0.35rem}
+#donate-mock .card input[type="text"], #donate-mock .card input[type="email"], #donate-mock .card input[type="number"]{min-height:44px}
+#donate-mock .card .grid-2{gap:0.5rem}

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Donate — Jordan's Crossing</title>
+  <meta name="description" content="Support Jordan's Crossing — mock donation page (demo)." />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/logo.svg" alt="Jordan's Crossing logo" width="48" height="48">
+        <span class="brand">Jordan's Crossing</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#programs">Programs</a></li>
+          <li><a href="index.html#get-help">Get Help</a></li>
+          <li><a href="index.html#volunteer">Volunteer</a></li>
+          <li><a href="index.html#donate" class="cta">Donate</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container" id="donate-mock">
+      <h1>Support Jordan's Crossing</h1>
+      <p class="lead">Thank you — your gift helps provide safe housing, counseling, and job training for women and children rebuilding their lives.</p>
+
+      <form id="donation-form" class="card" aria-labelledby="donation-heading">
+        <input type="hidden" name="_demo" value="true">
+        <label for="donor-name">Full name</label>
+        <input id="donor-name" name="name" type="text" required>
+
+        <label for="donor-email">Email</label>
+        <input id="donor-email" name="email" type="email" required>
+
+        <fieldset>
+          <legend>Select amount</legend>
+          <div class="amounts">
+            <label><input type="radio" name="amount" value="25"> $25</label>
+            <label><input type="radio" name="amount" value="50"> $50</label>
+            <label><input type="radio" name="amount" value="100" checked> $100</label>
+            <label><input type="radio" name="amount" value="other"> Other</label>
+          </div>
+        </fieldset>
+
+        <label for="other-amount" class="sr-only">Other amount</label>
+        <input id="other-amount" name="otherAmount" type="number" min="1" placeholder="If other, enter amount">
+
+        <fieldset>
+          <legend>Payment (demo only)</legend>
+          <label for="card-number">Card number</label>
+          <input id="card-number" name="card" type="text" inputmode="numeric" placeholder="4242 4242 4242 4242">
+
+          <div class="grid-2">
+            <div>
+              <label for="exp">Expiry</label>
+              <input id="exp" name="exp" type="text" placeholder="MM/YY">
+            </div>
+            <div>
+              <label for="cvc">CVC</label>
+              <input id="cvc" name="cvc" type="text" placeholder="123">
+            </div>
+          </div>
+        </fieldset>
+
+        <label>
+          <input type="checkbox" id="monthly" name="monthly">
+          Make this a monthly gift
+        </label>
+
+        <p class="muted small">This is a demo donation page. No payment will be processed. For live donations integrate a payment processor (Stripe, PayPal, Give, etc.) and ensure PCI compliance.</p>
+
+        <p>
+          <button type="submit" class="btn primary">Give (demo)</button>
+          <a class="btn outline" href="index.html">Back to home</a>
+        </p>
+
+        <div id="donation-result" class="muted" role="status" aria-live="polite" style="display:none;margin-top:1rem;padding:0.5rem;border-radius:6px;background:#f8fafb;border:1px solid #e6eef4"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="muted">Jordan's Crossing — demo donation page. No live payments are collected here.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('donation-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const amountRadios = form.amount;
+      let amount = form.amount.value;
+      if (amount === 'other' && form.otherAmount.value) {
+        amount = form.otherAmount.value;
+      }
+      const monthly = form.monthly.checked;
+
+      // Show a mock confirmation
+      const result = document.getElementById('donation-result');
+      result.style.display = 'block';
+      result.innerHTML = `<strong>Thank you, ${escapeHtml(name || 'friend')}.</strong> We received a demo ${monthly ? 'monthly ' : ''}gift of $${escapeHtml(amount)}. A confirmation email would be sent to ${escapeHtml(email)} in a production flow.`;
+
+      // Disable form controls to indicate completion
+      Array.from(form.elements).forEach(el => el.disabled = true);
+
+      // In a real integration you'd send tokenized payment data to your server here
+    });
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&"'<>]/g, function (s) {
+        return ({'&':'&amp;','"':'&quot;','\'':'&#39;','<':'&lt;','>':'&gt;'})[s];
+      });
+    }
+  </script>
+</body>
+</html>

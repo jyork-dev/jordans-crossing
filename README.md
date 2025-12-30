@@ -113,13 +113,22 @@ If you want, I can:
 - Add a small contact backend (Netlify Functions or simple Node server).
 - Convert this into a React/Vue site or a CMS-backed site if you want non-technical staff to update content.
 
-## SMTP-Info (Dev Only) ##
-export SMTP_HOST=live.smtp.mailtrap.io
+## Environment variables (example)
+
+For running the server locally or in a host, set the following environment variables. Do NOT commit secrets to the repository.
+
+```zsh
+# SMTP (optional - used to send intake emails)
+export SMTP_HOST=smtp.example.com
 export SMTP_PORT=587
-export SMTP_USER=api
-export SMTP_PASS=bfbe4079b1a38c8285c0586df48f1653
+export SMTP_USER=smtp-user
+export SMTP_PASS=smtp-pass
 export SMTP_FROM="Jordan's Crossing <no-reply@jordanscrossing.org>"
-export INTAKE_EMAIL="justin120197@gmail.com"
-export ADMIN_USER=admin
-export ADMIN_PASS=password
-npm start
+export INTAKE_EMAIL=help@jordanscrossing.org
+
+# Admin UI (required to enable admin area locally)
+export ADMIN_USER=youradmin
+export ADMIN_PASS=strongpassword
+```
+
+Tip: Use a secrets manager or your hosting provider's env var configuration for production.

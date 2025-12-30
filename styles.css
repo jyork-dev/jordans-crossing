@@ -43,7 +43,11 @@ body{
 .hero .lead{color:var(--muted);max-width:60ch}
 
 .values{display:flex;flex-wrap:wrap;gap:0.5rem 1rem;padding-left:0;list-style:none}
-.values li{background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,250,245,0.6));padding:0.45rem 0.75rem;border-radius:8px;border:1px solid rgba(22,32,41,0.04);font-weight:600}
+.values li{background:linear-gradient(90deg, rgba(255,255,255,0.6), rgba(255,250,245,0.6));padding:0.45rem 0.75rem;border-radius:8px;border:1px solid rgba(22,32,41,0.04);font-weight:600;display:flex;align-items:center;gap:0.6rem}
+.values li img{width:40px;height:40px;flex:0 0 40px}
+.values li svg.value-icon{width:40px;height:40px;flex:0 0 40px}
+.values li svg.value-icon path, .values li svg.value-icon circle{stroke:var(--accent);fill:none}
+.values li span{font-weight:700}
 .section h3{margin-top:1rem}
 
 .verse{

@@ -118,3 +118,17 @@ body{
 #donate-mock .card .amounts input{margin-right:0.35rem}
 #donate-mock .card input[type="text"], #donate-mock .card input[type="email"], #donate-mock .card input[type="number"]{min-height:44px}
 #donate-mock .card .grid-2{gap:0.5rem}
+
+/* Fundraising progress styles */
+.fundraising{background:linear-gradient(180deg,rgba(255,250,245,0.6),rgba(255,255,255,0.4));padding:1rem;border-radius:10px;margin-top:1rem;border:1px solid rgba(247,178,103,0.06)}
+.funding-stats{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.progress{flex:1 1 360px;height:14px;background:linear-gradient(180deg,#fff,#fffdfb);border-radius:999px;border:1px solid #e6eef4;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0%;transition:width 800ms cubic-bezier(.2,.9,.2,1)}
+.funding-labels{display:flex;flex-direction:column;align-items:flex-end;min-width:160px}
+.funding-labels .raised{font-weight:700;font-size:1.05rem}
+.funding-labels .goal{font-size:0.95rem}
+
+@media(max-width:720px){
+  .funding-stats{flex-direction:column;align-items:stretch}
+  .funding-labels{align-items:flex-start}
+}

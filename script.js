@@ -86,3 +86,48 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 });
 
+// Fundraising progress bar (demo-only)
+document.addEventListener('DOMContentLoaded', function(){
+  const fund = document.getElementById('fundraising');
+  if(!fund) return;
+  const goal = Number(fund.dataset.goal || 10000);
+  const initial = Number(localStorage.getItem('fundraiser-raised')) || Number(fund.dataset.initial || 0);
+  const raisedEl = document.getElementById('fund-raised');
+  const goalEl = document.getElementById('fund-goal');
+  const progressFill = fund.querySelector('.progress-fill');
+
+  function format(n){ return n.toLocaleString(); }
+
+  // update labels
+  if(goalEl) goalEl.textContent = format(goal);
+  if(raisedEl) raisedEl.textContent = format(initial);
+
+  // animate fill
+  const pct = Math.min(100, Math.round((initial / goal) * 100));
+  if(progressFill){
+    // small timeout so CSS transition kicks in
+    requestAnimationFrame(()=> setTimeout(()=> progressFill.style.width = pct + '%', 50));
+    const pb = fund.querySelector('.progress');
+    if(pb) pb.setAttribute('aria-valuenow', String(pct));
+  }
+
+  // Demo-only tool: on localhost, allow adding a mock donation to see progress change
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  if(isLocal){
+    const btn = document.createElement('button');
+    btn.className = 'btn outline';
+    btn.textContent = 'Add $50 (demo)';
+    btn.style.marginTop = '0.75rem';
+    fund.appendChild(btn);
+    btn.addEventListener('click', function(){
+      const current = Number(localStorage.getItem('fundraiser-raised')) || initial;
+      const next = current + 50;
+      localStorage.setItem('fundraiser-raised', String(next));
+      if(raisedEl) raisedEl.textContent = format(next);
+      const newPct = Math.min(100, Math.round((next / goal) * 100));
+      if(progressFill) progressFill.style.width = newPct + '%';
+      const pb = fund.querySelector('.progress'); if(pb) pb.setAttribute('aria-valuenow', String(newPct));
+    });
+  }
+});
+
